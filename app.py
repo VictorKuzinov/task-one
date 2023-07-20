@@ -18,7 +18,6 @@ from aiohttp_apispec import setup_aiohttp_apispec, validation_middleware
 from aiohttp_swagger3 import SwaggerDocs, SwaggerInfo, SwaggerUiSettings
 
 async def setup_cors(app):
-    print("Установка CORS...")
     cors = aiohttp_cors.setup(app, defaults={
         "*": aiohttp_cors.ResourceOptions(
             allow_credentials=True,
@@ -30,7 +29,6 @@ async def setup_cors(app):
     for route in list(app.router.routes()):
         if route.resource.canonical == aiohttp.web_urldispatcher.DynamicResource('/{path_info:.*}').canonical:
             cors.add(route)
-    print("CORS установка выполнена.")
 
 def setup_swagger_docs(app):
     # Настройка Swagger-документации
