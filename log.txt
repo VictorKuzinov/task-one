@@ -1,0 +1,15 @@
+
+INFO:root:2023-07-20 17:24:51 >> Старт программы...
+INFO:root:2023-07-20 17:24:51 >> Таблица Roles уже существует.
+INFO:root:2023-07-20 17:24:51 >> Таблица Users уже существует.
+INFO:root:2023-07-20 17:24:51 >> Таблица History уже существует.
+INFO:root:2023-07-20 17:24:51 >> Триггер не был создан.
+INFO:root:2023-07-20 17:25:04 >> Это маршрут CREATE Users
+ERROR:root:2023-07-20 17:25:04 >> Ошибка KeyError
+INFO:root:2023-07-20 17:25:04 >> Работает функция check_permission()...
+INFO:root:2023-07-20 17:25:04 >> Доступные методы['CREATE', 'READ', 'UPDATE', 'DELETE']
+INFO:root:2023-07-20 17:25:04 >> Новыая запись для вставки в таблицу Users: {'Name': 'Вячеслав', 'Family': 'Карпов', 'Login': 'Karp', 'Password': 'q123456789', 'Date_birth': '1965-01-05', 'Date_registr': '2023-07-20', 'RoleID': 'User'}
+INFO:root:2023-07-20 17:25:04 >> Такого пользователя нет
+INFO:root:2023-07-20 17:25:04 >> Запись вставлена
+INFO:root:2023-07-20 17:25:04 >> {'user_id': 91, 'name': 'Вячеслав', 'family': 'Карпов', 'login': 'Karp', 'password': 'q123456789', 'date_birth': '1965-01-05', 'date_registr': '2023-07-20', 'role_id': 'User'}
+INFO:aiohttp.access:127.0.0.1 [20/Jul/2023:12:25:04 +0000] "POST /insert_users HTTP/1.1" 200 750 "http://api:8080/api/v1/docs/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
