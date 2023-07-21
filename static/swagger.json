@@ -1,0 +1,590 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "My API",
+    "version": "1.0.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "User Authentication",
+        "description": "Route for user authentication.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Login": {
+                    "type": "string"
+                  },
+                  "Password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful authentication",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/insert_users": {
+      "post": {
+        "summary": "Add new users",
+        "description": "Route for adding new users",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Family": {
+                    "type": "string"
+                  },
+                  "Login": {
+                    "type": "string"
+                  },
+                  "Password": {
+                    "type": "string"
+                  },
+                  "Date_birth": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "Date_registr": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "RoleID": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful addition of new users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserID": {
+                      "type": "integer"
+                    },
+                    "Name": {
+                      "type": "string"
+                    },
+                    "Family": {
+                      "type": "string"
+                    },
+                    "Login": {
+                      "type": "string"
+                    },
+                    "Password": {
+                      "type": "string"
+                    },
+                    "Date_birth": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "Date_registr": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "RoleID": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/read_users/{user_id}": {
+      "get": {
+        "summary": "Get user information",
+        "description": "Route for retrieving user information.",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of user information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserID": {
+                      "type": "integer"
+                    },
+                    "Name": {
+                      "type": "string"
+                    },
+                    "Family": {
+                      "type": "string"
+                    },
+                    "Login": {
+                      "type": "string"
+                    },
+                    "Password": {
+                      "type": "string"
+                    },
+                    "Date_birth": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "Date_registr": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "RoleID": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/delete_users/{user_id}": {
+      "delete": {
+        "summary": "Delete users",
+        "description": "Route for deleting users",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful user deletion"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/update_users/{user_id}": {
+      "put": {
+        "summary": "Update user information",
+        "description": "Route for updating information of a specific user",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Family": {
+                    "type": "string"
+                  },
+                  "Login": {
+                    "type": "string"
+                  },
+                  "Password": {
+                    "type": "string"
+                  },
+                  "Date_birth": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "Date_registr": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "RoleID": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User information successfully updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "UserID": {
+                      "type": "integer"
+                    },
+                    "Name": {
+                      "type": "string"
+                    },
+                    "Family": {
+                      "type": "string"
+                    },
+                    "Login": {
+                      "type": "string"
+                    },
+                    "Password": {
+                      "type": "string"
+                    },
+                    "Date_birth": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "Date_registr": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "RoleID": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/update_roles/{role}": {
+      "put": {
+        "summary": "Update role information",
+        "description": "Route for updating role information.",
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "description": "Role",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "RoleID": {
+                    "type": "string"
+                  },
+                  "Allowed_methods": {
+                    "type": "object"
+                  },
+                  "Tables": {
+                    "type": "object"
+                  },
+                  "Records": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful update of role information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RoleID": {
+                      "type": "string"
+                    },
+                    "Allowed_methods": {
+                      "type": "object"
+                    },
+                    "Tables": {
+                      "type": "object"
+                    },
+                    "Records": {
+                      "type": "number",
+                      "format": "float"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Role not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/read_roles/{role}": {
+      "get": {
+        "summary": "Get role information",
+        "description": "Route for retrieving role information.",
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "description": "Role",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful retrieval of role information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RoleID": {
+                      "type": "string"
+                    },
+                    "Allowed_methods": {
+                      "type": "object"
+                    },
+                    "Tables": {
+                      "type": "object"
+                    },
+                    "Records": {
+                      "type": "number",
+                      "format": "float"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Role not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/insert_roles/{role}": {
+      "post": {
+        "summary": "Insert role information",
+        "description": "Route for inserting role information.",
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "description": "Role",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "RoleID": {
+                    "type": "string"
+                  },
+                  "Allowed_methods": {
+                    "type": "object"
+                  },
+                  "Tables": {
+                    "type": "object"
+                  },
+                  "Records": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful insertion of role information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RoleID": {
+                      "type": "string"
+                    },
+                    "Allowed_methods": {
+                      "type": "object"
+                    },
+                    "Tables": {
+                      "type": "object"
+                    },
+                    "Records": {
+                      "type": "number",
+                      "format": "float"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/delete_roles/{role}": {
+      "delete": {
+        "summary": "Delete role",
+        "description": "Route for deleting a role",
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "description": "Role",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful role deletion"
+          },
+          "404": {
+            "description": "Role not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://api:8080/",
+      "variables": {}
+    }
+  ]
+}
