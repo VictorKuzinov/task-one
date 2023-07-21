@@ -6,7 +6,10 @@ from alembic import context
 # Здесь мы инициализируем подключение к базе данных на основе параметров из конфигурации env.py.
 
 # Создаем подключение к базе данных
-url = f"postgresql://postgres:Diamond_12@localhost/Task one"
+# Значения username, password, localhost, db_name, представляют собой параметры подключения к вашей базе данных, 
+# и они должны быть заменены на соответствующие значения, которые применимы к вашей базе данных
+url = f"postgresql://username:password@localhost/db_name" 
+
 engine = engine_from_config(context.config.get_section('alembic'), url=url)
 
 # Привязываем подключение к контексту
