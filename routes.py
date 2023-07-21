@@ -10,7 +10,6 @@ async def login(request):
     data = await request.json()
     login = data.get('Login')
     password = data.get('Password')
-    print(login+' '+password)
     if await check_credentials(login, password) :
         token = await generate_token(login, password)
         response_data = {'token': token}
