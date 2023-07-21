@@ -8,7 +8,6 @@ async def generate_token(login, password):
     payload = {'Login': login, 'Password': password}
     token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
     token = "Bearer "+ token
-    print(token)
     return token
 
 async def check_credentials(login, password):
