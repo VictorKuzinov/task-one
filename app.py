@@ -39,7 +39,7 @@ def setup_swagger_docs(app):
             title="Swagger",
             version="1.0.0",
         ),
-        components="C:\Python\Task thirteen\static\swagger.json"
+        components="static\swagger.json"
     )
 class MyAuthorizationPolicy(AbstractAuthorizationPolicy):
     async def permits(self, identity, permission, context=None):
